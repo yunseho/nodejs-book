@@ -2,7 +2,7 @@ const SocketIO = require('socket.io');
 
 module.exports = (server) => {
   const io = SocketIO(server, { path: '/socket.io' });
-
+                              //path 프론트와 연결
   io.on('connection', (socket) => { // 웹소켓 연결 시
     const req = socket.request;
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -18,7 +18,7 @@ module.exports = (server) => {
       console.log(data);
     });
     socket.interval = setInterval(() => { // 3초마다 클라이언트로 메시지 전송
-      socket.emit('news', 'Hello Socket.IO');
+      socket.emit('news', 'Hello Socket.IO');//뉴스라는 이벤트에 헬로소켈아이오를 보내라
     }, 3000);
   });
 };
